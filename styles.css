@@ -1,0 +1,41 @@
+.clock {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.crazy-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.5rem;
+    grid-auto-flow: row;
+    /* background-color: black; */
+}
+
+.cell {
+    padding: 0.5rem;
+    height: 10rem;
+    border: 3px solid black;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(128, 128, 128, 0.5);
+    background-image: url("assets/lock.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    resize: none;
+    border-radius: 0.8rem;
+    font-family: monospace;
+    outline: none;
+}
+
+.cell:focus {
+    border-color: red;
+}
+
+.active-cell {
+    background: transparent;
+}
+/* 
+.cell:not(.active-cell) {
+
+} */
