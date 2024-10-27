@@ -12,10 +12,10 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 gemini_api_key = os.environ.get('API_KEY')
 
 # API Key debugging
-if gemini_api_key:
-    print("API Key:", gemini_api_key)
-else:
-    print("API Key not found. Please set the environment variable.")
+# if gemini_api_key:
+#     print("API Key:", gemini_api_key)
+# else:
+#     print("API Key not found. Please set the environment variable.")
 
 
 print(gemini_api_key)
@@ -28,47 +28,40 @@ class IdeaGeneration(BaseHTTPRequestHandler):
         
         # Check if the requested path is root "/"
         if self.path == '/':
-            file_path = 'index.html'
-            try:
-                # Open and read the HTML file
-                with open(file_path, 'r') as file:
-                    html_content = file.read()
-                # Send a 200 OK response
-                self.send_response(200)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                # Write the HTML content to the response
-                self.wfile.write(html_content.encode('utf-8'))
-            # Handle file not found error
-            except FileNotFoundError:
-                self.send_error(404, "File not found")
+            file_path = 'options.html'
+            self.serve_html_page(file_path)
         elif self.path == '/results':
             file_path = 'results.html'
-            try:
-                # Open and read the HTML file
-                with open(file_path, 'r') as file:
-                    html_content = file.read()
-                # Send a 200 OK response
-                self.send_response(200)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                # Write the HTML content to the response
-                self.wfile.write(html_content.encode('utf-8'))
-            # Handle file not found error
-            except FileNotFoundError:
-                self.send_error(404, "File not found")
+            self.serve_html_page(file_path)
+        elif self.path == '/board':
+            file_path = 'board.html'
+            self.serve_html_page(file_path)
+        elif self.path == '/results-idea':
+            file_path = 'results_idea.html'
+            self.serve_html_page(file_path)
         elif self.path.startswith('/assets/'):
             asset_path = self.path[1:]  # Remove the leading '/'
             try:
                 with open(asset_path, 'rb') as file:
                     self.send_response(200)
-                    self.send_header('Content-type', 'image/svg+xml')
+                    self.send_header('Content-type', 'image/svg+xml+jpg+png')
                     self.end_headers()
                     self.wfile.write(file.read())
             except FileNotFoundError:
                 self.send_error(404, "File not found.")
         elif self.path == '/styles.css':
             css_file_path = "styles.css"
+            try:
+                with open(css_file_path, 'r') as file:
+                    css_content = file.read()
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/css')
+                    self.end_headers()
+                    self.wfile.write(css_content.encode('utf-8'))
+            except FileNotFoundError:
+                self.send_error(404, "File not found.")
+        elif self.path == '/results-styles.css':
+            css_file_path = "results-styles.css"
             try:
                 with open(css_file_path, 'r') as file:
                     css_content = file.read()
@@ -92,33 +85,57 @@ class IdeaGeneration(BaseHTTPRequestHandler):
         else:
             # Handle paths that are not "/"
             self.send_error(404, "Page not found")
-
-    def convert_markdown_to_html(self, text):
-        # Convert Markdown-style headings
-        text = text.replace('## ', '<h2>').replace('##', '</h2>')
-        
-        # Convert bold and italic
-        text = text.replace('***', '<strong><em>').replace('***', '</em></strong>')  # ***text***
-        text = text.replace('**', '<strong>').replace('**', '</strong>')  # **text**
-        text = text.replace('*', '<em>').replace('*', '</em>')  # *text*
-        
-        # For headings, you might want to support more levels
-        text = text.replace('# ', '<h1>').replace('#', '</h1>')
-        
-        return text
-
     
+    #serving html pages
+    def serve_html_page(self, file_path):
+        try:
+            # Open and read the HTML file
+            with open(file_path, 'r') as file:
+                html_content = file.read()
+            # Send a 200 OK response
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            # Write the HTML content to the response
+            self.wfile.write(html_content.encode('utf-8'))
+        # Handle file not found error
+        except FileNotFoundError:
+            self.send_error(404, "File not found")
+
+
     def format_combined_ideas(self, combined_ideas):
         # Splitting the ideas by new lines
         ideas_list = combined_ideas.split('\n')
-        formatted_ideas = '<ul>'  # Start an unordered list
+        formatted_ideas = '<ul class="ideas-list">'  # Start an unordered list with a class
         for idea in ideas_list:
             if idea.strip():  # Check if the idea is not just whitespace
                 # Replace Markdown with HTML tags
                 idea = self.convert_markdown_to_html(idea.strip())
-                formatted_ideas += f'<li>{idea}</li>'  # Add each idea as a list item
+                formatted_ideas += f'<li class="idea-item">{idea}</li>'  # Add each idea as a list item with a class
         formatted_ideas += '</ul>'  # End the unordered list
         return formatted_ideas
+
+    def convert_markdown_to_html(self, text):
+        # Convert headings with classes
+        text = text.replace('## ', '<h2 class="heading1">').replace('\n##', '</h2>')  # Convert to <h2>
+        text = text.replace('# ', '<h1 class="heading2">').replace('\n#', '</h1>')  # Convert to <h1>
+        
+        # Replace closing tags correctly
+        text = text.replace('</h1>', '</h1>\n').replace('</h2>', '</h2>\n')
+
+        #adding paragraph tags and classes to be styled in styles.css
+        text = text.replace('***', '<span class="heading3">').replace('***', '</span></strong>')  # ***text***
+        text = text.replace('**', '<span class="heading4">').replace('**', '</span>')  # **text**
+        text = text.replace('*', '<span class="heading5">').replace('*', '</span>')  # *text*
+
+        
+        text = text.replace('</span></span>', '</span>').replace('</span></span>', '</span>')
+
+        # Ensure proper formatting by removing excess tags
+        # text = text.replace('<p></p>', '').replace('<p></p>', '')  # Remove empty tags
+
+        return text
+
     
     #updating results.html with the parameter given
     def update_results(self, combined_ideas):
@@ -136,12 +153,14 @@ class IdeaGeneration(BaseHTTPRequestHandler):
                         <title></title>
                         <meta name="description" content="">
                         <meta name="viewport" content="width=device-width, initial-scale=1">
-                        <link rel="stylesheet" href="styles.css">
+                        <link rel="stylesheet" href="results-styles.css">
+                    
                     </head>
-                    <body>
+                    <body style="background-size: no-repeat;">
                         <!--[if lt IE 7]>
                             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
                         <![endif]-->
+                        <div class='background-mask'></div>
                         <h1>Results</h1>
                         {self.format_combined_ideas(combined_ideas)}
                         <h5>Model Used: Google Gemini 1.5 Flash</h5>

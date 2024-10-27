@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Body Styling */
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Main Container */
+            .welcome-container {
+                background-color: #fff;
+                padding: 3rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 90%;
+                max-width: 400px;
+                animation: fadeIn 1s ease-in-out;
+            }
+
+            /* Heading */
+            .welcome-container h1 {
+                font-size: 2.5rem;
+                color: #333;
+                margin-bottom: 1.5rem;
+                font-weight: bold;
+            }
+
+            /* Form Styling */
+            .form-container {
+                display: flex;
+                flex-direction: column;
+                padding: 3rem;
+            }
+
+            /* Input Groups */
+            .input-group {
+                margin-bottom: 1.5rem;
+                text-align: left;
+            }
+
+            /* Labels */
+            .input-group label {
+                font-size: 1rem;
+                color: #666;
+                margin-bottom: 0.5rem;
+                display: block;
+                font-weight: 500;
+            }
+
+            /* Inputs */
+            .input-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            /* Input Focus Styling */
+            .input-group input:focus {
+                border-color: #007acc;
+                outline: none;
+                box-shadow: 0 0 6px rgba(0, 122, 204, 0.2);
+            }
+
+            /* Button Styling */
+            button {
+                padding: 0.75rem;
+                border: none;
+                border-radius: 5px;
+                background-color: #007acc;
+                color: #fff;
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #005a99;
+            }
+
+            /* Animation */
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="welcome-container">
+            <h1>Welcome to Wrapp-It Idea Generation Tool By HackerBees</h1>
+        </div>
+        <!-- Collects information about the user -->
+        <form class="form-container" method="post">
+            <div class="input-group">
+                <label for="name">Your Name</label>
+                <input class="input-group" type="text" name="name" id="">
+            </div>
+            
+            <div class="input-group">
+                <label for="team-code">Team Code</label>
+                <input class="input-group" type="text" name="tem-code" id="">
+            </div>
+            
+        </form>
+        <div class="input-group">
+            <a  href="http://localhost:8070/board"><button type="button" class="button-56" >Submit</button></a>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

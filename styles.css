@@ -1,3 +1,13 @@
+body{
+    height: 100%;
+    background-image: url('assets/bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    color: #f9f9f9;
+    text-align: center;
+}
+
 .clock {
     text-align: center;
     font-size: 2.5rem;
@@ -6,7 +16,6 @@
 .crazy-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
     gap: 0.5rem;
     grid-auto-flow: row;
     /* background-color: black; */
@@ -15,10 +24,10 @@
 .cell {
     padding: 0.5rem;
     height: 10rem;
-    border: 3px solid black;
+    
     border-radius: 1rem;
     overflow: hidden;
-    background: rgba(128, 128, 128, 0.5);
+    background: rgba(255, 253, 253, 0.756);
     background-image: url("assets/lock.svg");
     background-repeat: no-repeat;
     background-position: center;
@@ -39,3 +48,140 @@
 .cell:not(.active-cell) {
 
 } */
+
+
+
+.idea-submit-btn{
+    display: block;
+    margin: 1rem auto;
+    padding: 1rem;
+
+}
+
+/* CSS */
+.button-55 {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-55:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button-55:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+
+
+/* CSS */
+.button-56 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
+}
+
+a{
+    text-decoration: none;
+    color: #01204c;
+}
+
+.options {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 30rem 30rem;
+    /* gap: 2rem; */
+    place-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.method {
+    background-color: white;
+    color: black;
+    padding: 5rem 8rem;
+    border-radius: 1rem;
+}
+
+.crazy8 {
+    cursor: pointer;
+}
