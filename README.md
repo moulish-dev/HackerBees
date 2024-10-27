@@ -13,13 +13,13 @@ This is mainly to tackle the long time taking process of idea generation during 
 ## Installation
 
 1. **Clone the Repository**:
-    ```bash
-    git clone https://github.com/yourusername/project-repo-name.git
-    cd project-repo-name
+    ```
+    git clone https://github.com/moulish-dev/HackerBees.git
+    cd HackerBees
     ```
 
 2. **Install Dependencies**:
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
