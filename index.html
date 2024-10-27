@@ -16,16 +16,20 @@
             <section class="clock">
                 <h3>01:00</h3>
             </section>
-            <section class="crazy-board">
-                <textarea class="cell" id="1"> </textarea>
-                <textarea class="cell" id="2"></textarea
-                ><textarea class="cell" id="3"></textarea
-                ><textarea class="cell" id="4"></textarea>
-                <textarea class="cell" id="5"></textarea>
-                <textarea class="cell" id="6"></textarea>
-                <textarea class="cell" id="7"></textarea>
-                <textarea class="cell" id="8"></textarea>
-            </section>
+            <form action="/idea-submit" method="POST">
+                <section class="crazy-board">
+                    <textarea class="cell" name="idea" id="1">AI-Powered Gardening Assistant: Create an app that provides personalized gardening tips based on user preferences, climate data, and soil conditions. It could include a plant identification feature using image recognition.</textarea>
+                    <textarea class="cell" name="idea" id="2">Virtual Fitness Coach: Develop an application that offers customized workout plans and nutrition advice based on individual fitness goals. Users can log their progress and receive motivational reminders and challenges.</textarea>
+                    <textarea class="cell" name="idea" id="3">Smart Meal Planner: Design an app that generates weekly meal plans based on dietary restrictions, preferences, and available ingredients. It could include grocery list generation and recipe suggestions.</textarea>
+                    <textarea class="cell" name="idea" id="4">Eco-Friendly Product Finder: Build a platform that helps users find and compare sustainable products. Users can input their needs, and the app recommends eco-friendly alternatives while providing information on their impact.</textarea>
+                    <textarea class="cell" name="idea" id="5">Mental Health Check-In App: Create a mobile application that allows users to track their mood and mental health. It can offer guided meditations, journaling prompts, and resources based on their current state.</textarea>
+                    <textarea class="cell" name="idea" id="6">Community Skill Sharing Platform: Develop an online platform where users can share their skills and learn from each other. Users can offer classes or tutorials in areas like cooking, coding, or art.</textarea>
+                    <textarea class="cell" name="idea" id="7">Personal Finance Tracker: Build a web application that helps users manage their finances by tracking expenses, creating budgets, and offering personalized savings advice based on spending habits.</textarea>
+                    <textarea class="cell" name="idea" id="8">Language Exchange App: Create a mobile app that connects users looking to practice different languages. It can facilitate chat or video calls with native speakers and include games or quizzes for interactive learning.</textarea>
+
+                    <button type="submit" name="idea-submit">Submit Ideas</button>
+                </section>
+            </form>
         </main>
         <script src="app.js"></script>
     </body>
